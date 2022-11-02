@@ -18,7 +18,7 @@ pipeline {
           steps {
              sh '''
                 #kubectl apply
-                kubectl apply -f ns.yaml deployment.yaml svc.yaml ingress.yaml
+                kubectl apply -f .
                 '''
             }
         }
