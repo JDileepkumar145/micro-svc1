@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
-                '''
+                 sh '''
                  # Build
                  sudo docker build -t 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static$BUILD_NUMBER .
                  #logintoecr                
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('EKS deploy') {
           steps {
-            '''
+             sh '''
                 #kubectl apply
                 kubectl apply -f ns.yaml deployment.yaml svc.yaml ingress.yaml
                 '''
