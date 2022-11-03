@@ -10,7 +10,7 @@ pipeline {
                  #logintoecr                
                  aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com
                  #push image to ecr
-                 docker push 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:latest$BUILD_NUMBER
+                 sudo docker push 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:latest$BUILD_NUMBER
                  '''
             }
         }
