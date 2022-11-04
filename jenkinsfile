@@ -18,7 +18,8 @@ pipeline {
           steps {
              sh '''
                 #kubectl apply
-                cd /var/lib/jenkins/workspace/cicd-static-k8s/k8s
+                #cd /var/lib/jenkins/workspace/cicd-static-k8s/k8s
+                cd /k8s
                 kubectl apply -f .
                 '''
             }
