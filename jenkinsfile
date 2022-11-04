@@ -18,6 +18,7 @@ pipeline {
           steps {
              sh '''
                 #kubectl apply
+                cd /k8s
                 ./kubectl apply -f .
                 '''
             }
