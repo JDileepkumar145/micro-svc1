@@ -6,11 +6,11 @@ pipeline {
             steps {
                  sh '''
                  # Build
-                 sudo docker build -t 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:2 .
+                 sudo docker build -t 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:$BUILD_NUMBER .
                  #logintoecr                
                  aws ecr get-login-password --region ap-southeast-1 | sudo docker login --username AWS --password-stdin 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com
                  #push image to ecr
-                 sudo docker push 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:2
+                 sudo docker push 728964708459.dkr.ecr.ap-southeast-1.amazonaws.com/static:$BUILD_NUMBER
                  '''
             }
         }
@@ -20,6 +20,7 @@ pipeline {
                 #kubectl apply
                 cd /var/lib/jenkins/workspace/cicd-static-k8s/k8s
                 #cd /k8s
+                sed -i 's/TAG/$BUILD_NUMBER/g' deployment.yaml
                 kubectl apply -f .
                 '''
             }
